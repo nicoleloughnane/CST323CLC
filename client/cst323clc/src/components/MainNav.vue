@@ -14,8 +14,3 @@ export default {
     name: "MainNav",
 }
 </script>
-<style>
-    body {
-        background-color: #1E1E1E;
-    }
-</style>
