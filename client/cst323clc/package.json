@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "lint": "^0.8.19",
+    "prettier": "^2.8.3",
     "vue": "^3.2.13"
   },
   "devDependencies": {
