@@ -15,7 +15,9 @@ const api = process.env.API_URL;
 app.use(express.json());
 app.use(morgan("tiny"));
 
-//TODO routes
+//route for instruments
+const instrumentsRoute = require("./routes/instrument");
+app.use(`${api}/instruments`, instrumentsRoute);
 
 //connect using connection string from .env file
 mongoose
@@ -41,7 +43,3 @@ app.listen(3000, () => {
   console.log(api);
   console.log("server is running at http://localhost:3000");
 });
-
-/*app.listen(`${api}/instruments`, () => {
-  console.log("server is running on localhost:3000");
-}); */
