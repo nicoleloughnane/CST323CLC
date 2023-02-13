@@ -17,11 +17,11 @@ app.use(morgan("tiny"));
 
 //route for instruments
 const instrumentsRoute = require("./routes/instrument");
-app.use(`${api}/instruments`, instrumentsRoute);
+app.use(`/instruments`, instrumentsRoute);
 
 //connect using connection string from .env file
 mongoose
-  .connect(process.env.CONNECTION_STRING, {
+  .connect(process.env.API_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     dbName: "CST323DB",
