@@ -34,9 +34,9 @@ mongoose
   });
 
 //api
-app.get("/", (req, res) => {
+/*app.get("/", (req, res) => {
   res.send("hello world");
-});
+}); */
 
 //running on localhost port 3000
 app.listen(3000, () => {
