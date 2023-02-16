@@ -2,29 +2,26 @@
 <!--referenced from https://tailwind-elements.com/docs/standard/components/cards/-->
 <template>
   <div class="flex justify-center">
-    <div class="block rounded-2xl shadow-xl bg-white max-w-sm">
-      <div class="p-6">
-        <div class="m-6">
-          <h3 class="text-xl">{{ instrument.name }}</h3>
-          <h3 class="text-base">{{ instrument.type }}</h3>
-          <h4 class="text-base">{{ instrument.year }}</h4>
-          <h4 class="text-sm">{{ instrument.company }}</h4>
-          <h4 class="text-sm">{{ instrument.price }}</h4>
+    <div class="block rounded-2xl shadow-xl bg-white w-4/5">
+      <div class="p-6 text-center">
+        <div class="m-4">
+          <h2 class="text-3xl font-bold underline pb-6">
+            {{ instrument.name }}
+          </h2>
+          <h3 class="text-xl">{{ instrument.type }}</h3>
+          <h4 class="text-xl">{{ instrument.year }}</h4>
+          <h4 class="text-xl italic">{{ instrument.company }}</h4>
+          <h4 class="text-xl">${{ instrument.price }}</h4>
         </div>
         <!--actions the user can take: view, edit, or delete-->
         <div class="actions">
           <Button
-            link
-            :to="$route.path + '/view/' + instrument._id"
-            text="View"
-            button-type="primary"
-            class="m-2"
+            text="Delete"
+            button-type="delete"
+            class="m-2 w-64 text-xl"
+            @click.prevent="emitDelete"
           />
-          <Button text="Delete" button-type="delete" class="m-2" />
         </div>
-        <h5 class="text-gray-900 font-medium mb-2">
-          <slot></slot>
-        </h5>
       </div>
     </div>
   </div>
@@ -43,8 +40,15 @@ export default {
       required: true,
     },
   },
+  emits: ["emit-delete"],
   data() {
     return {};
+  },
+  methods: {
+    emitDelete() {
+      console.log("emitting delete " + "id: " + this.instrument._id);
+      this.$emit("emit-delete", this.instrument._id);
+    },
   },
 };
 </script>
