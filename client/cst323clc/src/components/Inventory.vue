@@ -12,50 +12,30 @@
   <div class="flex flex-col items-center text-center">
     <h1 class="text-brand-cream-1 text-xl mb-16">Instrument Inventory</h1>
   </div>
-  <div class="grid space-x-1 lg:grid-cols-12">
-    <div v-if="inventory.length > 0">
-      <div
+  <div v-if="inventory.length > 0">
+    <div class="grid space-x-1 lg:grid-cols-12 items-center">
+      <card
         v-for="instrument in inventory"
         :key="instrument._id"
         :instrument="instrument"
-      >
-        <card class="m-4">
-          <div class="m-6">
-            <h3 class="text-xl">{{ instrument.name }}</h3>
-            <h3 class="text-base">{{ instrument.type }}</h3>
-            <h4 class="text-base">{{ instrument.year }}</h4>
-            <h4 class="text-sm">{{ instrument.company }}</h4>
-            <h4 class="text-sm">{{ instrument.price }}</h4>
-          </div>
-          <!--actions the user can take: view, edit, or delete-->
-          <div class="actions">
-            <Button
-              link
-              :to="$route.path + '/view/' + instrument._id"
-              text="View"
-              button-type="primary"
-              class="m-2"
-            />
-            <Button text="Delete" button-type="delete" class="m-2" />
-          </div>
-        </card>
-        <div v-if="displayModal">
-          <modal
-            :key="instrument in inventory"
-            :instrument="instrument"
-            @emit-close-modal="closeModal()"
-            @emit-delete="deleteInstrument($event)"
-          />
-        </div>
-      </div>
+      />
     </div>
 
-    <!--else if no entries exist-->
-    <div v-else-if="inventory.length === 0">
-      <h3 class="text-brand-cream-1">
-        Error occurred or No instruments were found
-      </h3>
+    <div v-if="displayModal">
+      <modal
+        :key="instrument in inventory"
+        :instrument="instrument"
+        @emit-close-modal="closeModal()"
+        @emit-delete="deleteInstrument($event)"
+      />
     </div>
+  </div>
+
+  <!--else if no entries exist-->
+  <div v-else-if="inventory.length === 0">
+    <h3 class="text-brand-cream-1">
+      Error occurred or No instruments were found
+    </h3>
   </div>
 </template>
 
