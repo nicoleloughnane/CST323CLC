@@ -1,3 +1,5 @@
+//Function makes api call to get all instruments
+
 import axios from "axios";
 
 const getInventory = async () => {

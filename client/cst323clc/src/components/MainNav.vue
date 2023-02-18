@@ -5,6 +5,7 @@
         <ul
           class="flex h-full items-center pl-5 text-brand-cream-1 text-base justify-between"
         >
+          <!--Navbar items-->
           <li>
             <router-link to="/" class="text-2xl px-12"
               >Instrumanagement</router-link

@@ -12,5 +12,6 @@
       "mode": "auto"
     }
   ],
-  "css.lint.unknownAtRules": "ignore"
+  "css.lint.unknownAtRules": "ignore",
+  "volar.inlayHints.eventArgumentInInlineHandlers": false
 }
