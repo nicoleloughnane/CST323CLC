@@ -5,6 +5,7 @@
     <div class="block rounded-2xl shadow-xl bg-white w-4/5">
       <div class="p-6 text-center">
         <div class="m-4">
+          <!--Instrument properties-->
           <h2 class="text-3xl font-bold underline pb-6">
             {{ instrument.name }}
           </h2>
@@ -13,7 +14,7 @@
           <h4 class="text-xl italic">{{ instrument.company }}</h4>
           <h4 class="text-xl">${{ instrument.price }}</h4>
         </div>
-        <!--actions the user can take: view, edit, or delete-->
+        <!--Delete button for each instrument-->
         <div class="actions">
           <Button
             text="Delete"
@@ -34,6 +35,7 @@ export default {
   components: {
     Button,
   },
+  //Each card requires an instrument object
   props: {
     instrument: {
       type: Object,
@@ -44,6 +46,8 @@ export default {
   data() {
     return {};
   },
+  //Method to emit delete event to parent component
+  //Utilizes the instrument's id to delete the instrument
   methods: {
     emitDelete() {
       console.log("emitting delete " + "id: " + this.instrument._id);

@@ -1,3 +1,4 @@
+//Function makes api call to add a new instrument
 import axios from "axios";
 
 const newInstrument = async (instrument) => {
