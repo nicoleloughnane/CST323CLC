@@ -59,7 +59,7 @@ button {
 }
 
 .secondary {
-  @apply bg-white outline outline-gray-700 outline-1 text-gray-700 rounded-lg px-4 py-2;
+  @apply bg-white outline outline-gray-700 outline-1 text-gray-700 rounded-lg px-4 py-2 font-medium;
 }
 
 .delete {
