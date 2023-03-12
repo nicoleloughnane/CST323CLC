@@ -33,10 +33,10 @@ mongoose
     console.log(err);
   });
 
-//api
-/*app.get("/", (req, res) => {
-  res.send("hello world");
-}); */
+app.use(express.static(__dirname + "/dist/"));
+app.get("*", (req, res) => {
+  res.sendFile(__dirname + "/dist/index.html");
+});
 
 //running on localhost port 3000
 app.listen(3000, () => {
