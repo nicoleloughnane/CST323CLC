@@ -3,7 +3,7 @@
 import axios from "axios";
 
 const getInventory = async () => {
-  const url = "http://localhost:3000/instruments";
+  const url = "/instruments";
   const response = await axios.get(url);
   console.log(response.data);
   return response.data;
