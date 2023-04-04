@@ -12,8 +12,10 @@ logger.level = "info";
 
 //for .env file
 require("dotenv/config");
-const api = process.env.API_URL;
 
+const API_URL =
+  "mongodb+srv://dbUser:dbPassword@cst323cluster.zrtwlfq.mongodb.net/?retryWrites=true&w=majority";
+console.log("connection string: " + API_URL);
 //middleware - express, morgan
 app.use(express.json());
 app.use(morgan("tiny"));
@@ -24,7 +26,7 @@ app.use(`/instruments`, instrumentsRoute);
 
 //connect using connection string from .env file
 mongoose
-  .connect(process.env.API_URL, {
+  .connect(API_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     dbName: "CST323DB",
@@ -44,6 +46,5 @@ mongoose
 
 //running on localhost port 3000
 app.listen(3000, () => {
-  console.log(api);
   console.log("server is running at http://localhost:3000");
 });
