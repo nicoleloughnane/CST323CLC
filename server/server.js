@@ -13,9 +13,8 @@ logger.level = "info";
 //for .env file
 require("dotenv/config");
 
-const API_URL =
-  "mongodb+srv://dbUser:dbPassword@cst323cluster.zrtwlfq.mongodb.net/?retryWrites=true&w=majority";
-console.log("connection string: " + API_URL);
+const api = process.env.API_URL;
+
 //middleware - express, morgan
 app.use(express.json());
 app.use(morgan("tiny"));
@@ -26,7 +25,7 @@ app.use(`/instruments`, instrumentsRoute);
 
 //connect using connection string from .env file
 mongoose
-  .connect(API_URL, {
+  .connect(api, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     dbName: "CST323DB",

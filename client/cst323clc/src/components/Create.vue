@@ -122,6 +122,7 @@
 <script>
 import newInstrument from "@/api/newInstrument";
 import ButtonComponent from "@/components/Reusable/ButtonComponent.vue";
+import * as Sentry from "@sentry/vue";
 export default {
   name: "Create",
   components: {
@@ -193,6 +194,11 @@ export default {
     async newInstrument(instrument) {
       //console.log(instrument);
       await newInstrument(instrument);
+      Sentry.addBreadcrumb({
+        category: "create instrument",
+        message: "instrument has been created: " + JSON.stringify(instrument),
+        level: "info",
+      });
       this.$router.push("/inventory");
     },
 
@@ -202,6 +208,11 @@ export default {
       this.validateForm();
       //if invalid, do a return to prevent rest of method from executing
       if (!this.formIsValid) {
+        Sentry.addBreadcrumb({
+          category: "formSubmit",
+          message: "form has been submitted but is not valid",
+          level: "info",
+        });
         return;
       }
       //at this point the form should be valid

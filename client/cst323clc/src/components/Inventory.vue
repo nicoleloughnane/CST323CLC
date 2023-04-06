@@ -36,6 +36,12 @@
         Error occurred or No instruments were found
       </h3>
     </div>
+    <Button
+      text="Error"
+      button-type="delete"
+      class="m-2 w-64 text-xl"
+      @click="throwError"
+    />
   </div>
 </template>
 
@@ -44,6 +50,7 @@ import Card from "@/components/Reusable/Card.vue";
 import Button from "@/components/Reusable/ButtonComponent.vue";
 import getInventory from "@/api/getInventory";
 import deleteInstrument from "@/api/deleteInstrument.js";
+import * as Sentry from "@sentry/vue";
 
 export default {
   name: "Inventory",
@@ -58,6 +65,22 @@ export default {
   },
   async mounted() {
     this.inventory = await getInventory();
+    //console.log("inventory: " + JSON.stringify(this.inventory));
+    //similar to a log
+    Sentry.addBreadcrumb({
+      category: "inventory",
+      message: "got inventory" + JSON.stringify(this.inventory),
+      level: "info",
+    });
+    if (this.inventory.length === 0) {
+      Sentry.addBreadcrumb({
+        category: "inventory",
+        message:
+          "there are no items in the inventory or an error has occurred" +
+          JSON.stringify(this.inventory),
+        level: "info",
+      });
+    }
   },
   methods: {
     async deleteInstrument(instrumentID) {
@@ -66,6 +89,20 @@ export default {
       if (response) {
         this.inventory = await getInventory();
       }
+      Sentry.addBreadcrumb({
+        category: "delete instrument",
+        message:
+          "instrument has been deleted that had an ID of: " + instrumentID,
+        level: "info",
+      });
+    },
+    throwError() {
+      Sentry.addBreadcrumb({
+        category: "error",
+        message: "error button clicked",
+        level: "error",
+      });
+      throw new Error("Sentry Error");
     },
   },
 };
