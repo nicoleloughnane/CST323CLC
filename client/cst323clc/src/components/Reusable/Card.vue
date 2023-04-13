@@ -19,7 +19,7 @@
           <Button
             text="Delete"
             button-type="delete"
-            class="m-2 w-64 text-xl"
+            class="m-2 w-32 text-xl items-center text-center"
             @click.prevent="emitDelete"
           />
         </div>
